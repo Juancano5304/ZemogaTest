@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Zemoga Test App</string>
+    <string name="all">ALL</string>
+    <string name="favorites">FAVORITES</string>
 </resources>

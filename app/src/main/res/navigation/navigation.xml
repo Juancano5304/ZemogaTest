@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/tabsFragment">
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.nequi.zemogatestapp.ui.list.ListFragment"
+        android:label="list_fragment"
+        tools:layout="@layout/list_fragment" />
+    <fragment
+        android:id="@+id/descriptionFragment"
+        android:name="com.nequi.zemogatestapp.ui.description.DescriptionFragment"
+        android:label="description_fragment"
+        tools:layout="@layout/description_fragment" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.nequi.zemogatestapp.ui.favorites.FavoritesFragment"
+        android:label="favorites_fragment"
+        tools:layout="@layout/favorites_fragment" />
+    <fragment
+        android:id="@+id/tabsFragment"
+        android:name="com.nequi.zemogatestapp.ui.tabs.TabsFragment"
+        android:label="TabsFragment" />
+</navigation>
