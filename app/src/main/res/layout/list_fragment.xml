@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/list_recycler"
-        tools:itemCount="8"/>
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.nequi.zemogatestapp.ui.list.ListViewModel" />
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:layout_width="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/list_recycler"
+            tools:itemCount="8"
+            tools:listitem="@layout/list_element" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

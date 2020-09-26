@@ -13,7 +13,7 @@ class ZemogaRepository(private val postDao: PostDao) {
     val getAll: LiveData<List<Post>> = postDao.getAll()
 
     fun readPost(post: Post) {
-        return postDao.readPost(post.id, 1)
+        return postDao.readPost(post.id, 0)
     }
 
     fun updateFavorite(post: Post)
@@ -53,10 +53,7 @@ class ZemogaRepository(private val postDao: PostDao) {
                             deleteAll()
                             for(item in response.body()!!) {
                                 item.favorite = false
-                                item.read = false
-                                if(item.id <= 20) {
-                                    item.read = true
-                                }
+                                item.read = item.id > 20
                             }
                             insert(response.body()!!)
                         }

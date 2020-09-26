@@ -11,15 +11,23 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
     private val repository: ZemogaRepository
+    private val applicationContext: Application
 
     init {
         val postDao = ZemogaDatabase.getDatabase(application).postDao()
         repository = ZemogaRepository(postDao)
+        applicationContext = application
     }
 
     fun callServiceGetPosts(context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.callServiceGetPosts(context)
+        }
+    }
+
+    fun reload() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.callServiceGetPosts(applicationContext)
         }
     }
 }

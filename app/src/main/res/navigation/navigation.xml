@@ -9,7 +9,11 @@
         android:id="@+id/listFragment"
         android:name="com.nequi.zemogatestapp.ui.list.ListFragment"
         android:label="list_fragment"
-        tools:layout="@layout/list_fragment" />
+        tools:layout="@layout/list_fragment" >
+        <action
+            android:id="@+id/action_listFragment_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/descriptionFragment"
         android:name="com.nequi.zemogatestapp.ui.description.DescriptionFragment"
