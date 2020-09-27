@@ -9,11 +9,7 @@
         android:id="@+id/listFragment"
         android:name="com.nequi.zemogatestapp.ui.list.ListFragment"
         android:label="list_fragment"
-        tools:layout="@layout/list_fragment" >
-        <action
-            android:id="@+id/action_listFragment_to_descriptionFragment"
-            app:destination="@id/descriptionFragment" />
-    </fragment>
+        tools:layout="@layout/list_fragment" />
     <fragment
         android:id="@+id/descriptionFragment"
         android:name="com.nequi.zemogatestapp.ui.description.DescriptionFragment"
@@ -27,5 +23,11 @@
     <fragment
         android:id="@+id/tabsFragment"
         android:name="com.nequi.zemogatestapp.ui.tabs.TabsFragment"
-        android:label="TabsFragment" />
+        android:label="TabsFragment" >
+        <action
+            android:id="@+id/action_tabsFragment_to_descriptionFragment"
+            app:destination="@id/descriptionFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
 </navigation>

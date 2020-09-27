@@ -1,13 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.description.DescriptionFragment">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.nequi.zemogatestapp.ui.description.DescriptionViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:background="@android:color/white"
+        android:padding="8dp">
 
-</FrameLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/description_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/description"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/body_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@+id/description_textview"
+            tools:text="gdhsj fbhds t438 fbdhs bfbdshufhdis732735 bfhsi y5729 bdsyw4rbdhsgjgdfhsjdfy38 dhsu3ty43454t7wehfjshgef y73829gfhjsfyu87e4" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/user_textview"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/user"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/body_textview" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/name_label"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_textview" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/email_label"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_label" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/phone_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/phone"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_label" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/web_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/website"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone_label" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/name_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/name_label"
+            app:layout_constraintTop_toTopOf="@+id/name_label"
+            tools:text="Juan David Cano" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/email_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/email_label"
+            app:layout_constraintTop_toTopOf="@+id/email_label"
+            tools:text="juancano5304@gmail.com" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/phone_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/phone_label"
+            app:layout_constraintTop_toTopOf="@+id/phone_label"
+            tools:text="3002136150" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/web_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/web_label"
+            app:layout_constraintTop_toTopOf="@+id/web_label"
+            tools:text="http://www.google.com" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="16dp"
+            android:text="@string/comments"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/web_textview" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/comments_recycler"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView"
+            tools:itemCount="3"
+            tools:listitem="@layout/comment_element" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -11,9 +11,11 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.GsonBuilder
 import com.nequi.zemogatestapp.R
 import com.nequi.zemogatestapp.databinding.ListFragmentBinding
 import kotlinx.android.synthetic.main.list_fragment.*
@@ -38,8 +40,11 @@ class ListFragment : Fragment() {
     ): View? {
 
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
-        viewModel.allPosts.observe(viewLifecycleOwner, Observer { post ->
-            adapter.setData(post)
+
+        viewModel.allPosts.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.submitList(it)
+            }
         })
 
         binding = DataBindingUtil.inflate(inflater, R.layout.list_fragment, container, false)
@@ -52,10 +57,22 @@ class ListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)
-        adapter = ListAdapter()
+        adapter = ListAdapter(PostListener{
+            postId -> viewModel.postClicked(postId)
+        })
         listRecyclerview = list_recycler
         listRecyclerview.adapter = adapter
         listRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+
+        viewModel.navigateToDescription.observe(viewLifecycleOwner, Observer {
+            postId -> postId?.let {
+                viewModel.callServiceGetUser(requireContext(), postId)
+                val bundle = Bundle()
+                bundle.putString("post", GsonBuilder().create().toJson(viewModel.allPosts.value!![postId]))
+                this.findNavController().navigate(R.id.action_tabsFragment_to_descriptionFragment, bundle)
+                viewModel.descriptionNavigated()
+            }
+        })
 
         itemTouchCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             override fun onMove(

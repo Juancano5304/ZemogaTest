@@ -2,4 +2,11 @@
     <string name="app_name">Zemoga Test App</string>
     <string name="all">ALL</string>
     <string name="favorites">FAVORITES</string>
+    <string name="description">Description</string>
+    <string name="name">Name</string>
+    <string name="user">User</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="website">Website</string>
+    <string name="comments">COMMENTS</string>
 </resources>

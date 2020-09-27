@@ -1,5 +1,6 @@
 package com.nequi.zemogatestapp.ui.tabs
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -41,5 +42,4 @@ class TabsFragment : Fragment() {
         setupViewPager(view_pager)
         tab_layout.setupWithViewPager(view_pager)
     }
-
 }

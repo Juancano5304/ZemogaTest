@@ -11,6 +11,9 @@ interface PostDao {
     @Query("SELECT * FROM post ORDER BY id ASC")
     fun getAll(): LiveData<List<Post>>
 
+    @Query("SELECT * FROM post WHERE id = :postId")
+    fun getDescription(postId: Int): LiveData<Post>
+
     @Query("DELETE FROM post")
     fun deleteAll()
 

@@ -32,9 +32,12 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "No hay conexión a internet", Toast.LENGTH_SHORT).show()
         }
 
-        val toolbar = mainactivity_toolbar
-        setSupportActionBar(toolbar)
+        setSupportActionBar(mainactivity_toolbar)
         supportActionBar!!.title = "Posts"
+        mainactivity_toolbar.title = "Posts"
+
+        navController = this.findNavController(R.id.fragment)
+        NavigationUI.setupActionBarWithNavController(this, navController)
     }
 
     override fun onSupportNavigateUp(): Boolean {

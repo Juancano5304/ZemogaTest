@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.recyclerview.widget.RecyclerView android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.favorites.FavoritesFragment">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
-
-</FrameLayout>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/favorites_recycler"
+    tools:listitem="@layout/favorite_element"
+    android:background="@android:color/white"
+    tools:itemCount="3"
+    xmlns:android="http://schemas.android.com/apk/res/android" />
