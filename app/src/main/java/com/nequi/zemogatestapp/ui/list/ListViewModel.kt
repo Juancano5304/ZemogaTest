@@ -14,7 +14,6 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: ZemogaRepository
     val allPosts: LiveData<List<Post>>
     private val applicationContext: Application
-    var progressBar: MutableLiveData<Boolean> = MutableLiveData(false)
     private val _navigateToDescription= MutableLiveData<Int>()
     val navigateToDescription
         get() = _navigateToDescription
@@ -39,7 +38,7 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     fun updateRead(postId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.readPost(postId)
-            Log.i("prueba", "registro readen actualizado")
+            Log.i("prueba", "Post leido")
         }
     }
 

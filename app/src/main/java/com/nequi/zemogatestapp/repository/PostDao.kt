@@ -28,4 +28,7 @@ interface PostDao {
 
     @Query("UPDATE post SET favorite = :favorite WHERE id = :id")
     fun updateFavorite(id: Int, favorite: Int)
+
+    @Query("SELECT * FROM post WHERE favorite = 1")
+    fun getFavorites(): LiveData<List<Post>>
 }

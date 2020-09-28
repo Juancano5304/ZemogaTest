@@ -3,10 +3,11 @@ package com.nequi.zemogatestapp.ui.tabs
 import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.util.Log
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.viewpager.widget.ViewPager
 import com.nequi.zemogatestapp.R
 import com.nequi.zemogatestapp.ui.favorites.FavoritesFragment
@@ -26,7 +27,24 @@ class TabsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.tabs_fragment, container, false)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if(id == R.id.reload) {
+            return false
+        }
+        if(id == R.id.favorite) {
+            Log.i("tabs", "probando favorito")
+            return true
+        }
+        return false
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
@@ -41,5 +59,9 @@ class TabsFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(TabsViewModel::class.java)
         setupViewPager(view_pager)
         tab_layout.setupWithViewPager(view_pager)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 }

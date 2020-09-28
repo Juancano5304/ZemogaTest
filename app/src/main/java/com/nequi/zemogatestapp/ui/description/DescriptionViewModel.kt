@@ -26,4 +26,10 @@ class DescriptionViewModel(application: Application) : AndroidViewModel(applicat
         postList = repository.getAll
         commentsList = repository.getComments
     }
+
+    fun setFavorite(post: Post) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateFavorite(post)
+        }
+    }
 }

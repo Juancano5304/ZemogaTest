@@ -13,16 +13,17 @@ class ZemogaRepository(private val postDao: PostDao, private val userDao: UserDa
     val getAll: LiveData<List<Post>> = postDao.getAll()
     val getUser: LiveData<User> = userDao.getUser()
     val getComments: LiveData<List<Comment>> = commentDao.getComments()
+    val getFavorites: LiveData<List<Post>> = postDao.getFavorites()
 
     fun readPost(postId: Int) {
-        return postDao.readPost(postId, 0)
+        return postDao.readPost(postId, 1)
     }
 
     fun updateFavorite(post: Post)
     {
         return when(post.favorite) {
-            true -> postDao.updateFavorite(post.id, 1)
-            false -> postDao.updateFavorite(post.id, 0)
+            true -> postDao.updateFavorite(post.id, 0)
+            false -> postDao.updateFavorite(post.id, 1)
         }
     }
 

@@ -6,6 +6,7 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Llamando al servicio", Toast.LENGTH_SHORT).show()
             return true
         }
-        return super.onOptionsItemSelected(item)
+        return false
     }
 
     private fun hasInternet(context: Context): Boolean {

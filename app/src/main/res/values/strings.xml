@@ -9,4 +9,6 @@
     <string name="phone">Phone</string>
     <string name="website">Website</string>
     <string name="comments">COMMENTS</string>
+    <string name="reload">reload</string>
+    <string name="favorite">favorite</string>
 </resources>
