@@ -66,7 +66,9 @@ class ListFragment : Fragment() {
 
         viewModel.navigateToDescription.observe(viewLifecycleOwner, Observer {
             postId -> postId?.let {
+                viewModel.updateRead(postId)
                 viewModel.callServiceGetUser(requireContext(), postId)
+                viewModel.callServiceGetComments(requireContext(), postId)
                 val bundle = Bundle()
                 bundle.putString("post", GsonBuilder().create().toJson(viewModel.allPosts.value!![postId]))
                 this.findNavController().navigate(R.id.action_tabsFragment_to_descriptionFragment, bundle)

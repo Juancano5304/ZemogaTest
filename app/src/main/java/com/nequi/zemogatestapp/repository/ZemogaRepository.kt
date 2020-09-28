@@ -2,18 +2,20 @@ package com.nequi.zemogatestapp.repository
 
 import android.content.Context
 import android.os.AsyncTask
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ZemogaRepository(private val postDao: PostDao, private val userDao: UserDao) {
+class ZemogaRepository(private val postDao: PostDao, private val userDao: UserDao, private val commentDao: CommentDao) {
     val getAll: LiveData<List<Post>> = postDao.getAll()
     val getUser: LiveData<User> = userDao.getUser()
+    val getComments: LiveData<List<Comment>> = commentDao.getComments()
 
-    fun readPost(post: Post) {
-        return postDao.readPost(post.id, 0)
+    fun readPost(postId: Int) {
+        return postDao.readPost(postId, 0)
     }
 
     fun updateFavorite(post: Post)
@@ -44,6 +46,14 @@ class ZemogaRepository(private val postDao: PostDao, private val userDao: UserDa
         userDao.deleteUser()
     }
 
+    private fun deleteComments() {
+        commentDao.deleteComments()
+    }
+
+    private fun insertComment(comment: Comment) {
+        commentDao.insert(comment)
+    }
+
     fun callServiceGetPosts(context: Context) {
         val postsService: JsonPlaceHolderService = RestEngine.getRestEngine()
             .create(JsonPlaceHolderService::class.java)
@@ -56,7 +66,7 @@ class ZemogaRepository(private val postDao: PostDao, private val userDao: UserDa
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
                 when(response.code()) {
                     200 -> {
-                        Toast.makeText(context, "Datos cargados", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Posts cargados", Toast.LENGTH_SHORT).show()
                         AsyncTask.execute {
                             deleteAll()
                             for(item in response.body()!!) {
@@ -71,10 +81,10 @@ class ZemogaRepository(private val postDao: PostDao, private val userDao: UserDa
         })
     }
 
-    fun callServiceGetUser(context: Context, postId: Int) {
+    fun callServiceGetUser(context: Context, userId: Int) {
         val jsonPlaceHolderService: JsonPlaceHolderService = RestEngine.getRestEngine()
             .create(JsonPlaceHolderService::class.java)
-        val result: Call<User> = jsonPlaceHolderService.getUser(postId)
+        val result: Call<User> = jsonPlaceHolderService.getUser(userId)
         result.enqueue(object : Callback<User> {
             override fun onFailure(call: Call<User>, t: Throwable) {
                 Toast.makeText(context, "No se puede acceder al servicio", Toast.LENGTH_SHORT).show()
@@ -89,6 +99,33 @@ class ZemogaRepository(private val postDao: PostDao, private val userDao: UserDa
                             val body = response.body()!!
                             val user = User(body.email, 0, body.name, body.phone, body.website)
                             insertUser(user)
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+    fun callServiceGetComments(context: Context, postId: Int) {
+        val jsonPlaceHolderService: JsonPlaceHolderService = RestEngine.getRestEngine()
+            .create(JsonPlaceHolderService::class.java)
+        val result: Call<List<Comment>> = jsonPlaceHolderService.getComments(postId)
+        result.enqueue(object : Callback<List<Comment>> {
+            override fun onFailure(call: Call<List<Comment>>, t: Throwable) {
+                Toast.makeText(context, "No se puede acceder al servicio", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<List<Comment>>, response: Response<List<Comment>>) {
+                when(response.code()) {
+                    200 -> {
+                        Toast.makeText(context, "Comentarios obtenidos", Toast.LENGTH_SHORT).show()
+                        AsyncTask.execute {
+                            deleteComments()
+                            val body = response.body()!!
+                            for(comment in body) {
+                                Log.i("Repository", comment.toString())
+                                insertComment(Comment(0, comment.body))
+                            }
                         }
                     }
                 }

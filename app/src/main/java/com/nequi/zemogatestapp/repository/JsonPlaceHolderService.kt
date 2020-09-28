@@ -10,4 +10,7 @@ interface JsonPlaceHolderService {
 
     @GET("users/{id}")
     fun getUser(@Path("id") id: Int): Call<User>
+
+    @GET("post/{id}/comments")
+    fun getComments(@Path("id") id: Int): Call<List<Comment>>
 }

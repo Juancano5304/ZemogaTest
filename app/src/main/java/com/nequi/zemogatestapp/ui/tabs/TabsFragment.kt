@@ -30,7 +30,7 @@ class TabsFragment : Fragment() {
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
-        adapter = AdapterViewPager(requireFragmentManager())
+        adapter = AdapterViewPager(childFragmentManager)
         adapter.addFragment(ListFragment(), "ALL")
         adapter.addFragment(FavoritesFragment(), "FAVORITES")
         viewPager.adapter = adapter

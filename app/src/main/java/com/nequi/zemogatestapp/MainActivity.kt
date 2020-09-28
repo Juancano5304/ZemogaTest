@@ -50,8 +50,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var id = item.itemId
+        val id = item.itemId
         if(id == R.id.reload) {
+            viewModel.callServiceGetPosts(this)
             Toast.makeText(this, "Llamando al servicio", Toast.LENGTH_SHORT).show()
             return true
         }

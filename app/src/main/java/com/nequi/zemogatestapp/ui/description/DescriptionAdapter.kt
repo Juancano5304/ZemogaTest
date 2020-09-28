@@ -1,31 +1,33 @@
-package com.nequi.zemogatestapp.ui.list
+package com.nequi.zemogatestapp.ui.description
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.nequi.zemogatestapp.databinding.CommentElementBinding
 import com.nequi.zemogatestapp.databinding.ListElementBinding
+import com.nequi.zemogatestapp.repository.Comment
 import com.nequi.zemogatestapp.repository.Post
+import com.nequi.zemogatestapp.ui.list.ListAdapter
+import com.nequi.zemogatestapp.ui.list.ListViewModel
 
-class ListAdapter(val clickListener: PostListener): ListAdapter<Post, com.nequi.zemogatestapp.ui.list.ListAdapter.MyViewHolder>(PostDiffCallback()) {
+class DescriptionAdapter: androidx.recyclerview.widget.ListAdapter<Comment, DescriptionAdapter.MyViewHolder>(PostDiffCallback()) {
 
-    private lateinit var listViewModel: ListViewModel
+    private lateinit var descriptionViewModel: DescriptionViewModel
     private lateinit var context: Context
 
-    class MyViewHolder private constructor(val binding: ListElementBinding): RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder private constructor(val binding: CommentElementBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(post: Post, clickListener: PostListener) {
-            binding.post = post
-            binding.clickListener = clickListener
+        fun bind(comment: Comment) {
+            binding.comment = comment
             binding.executePendingBindings()
         }
 
         companion object{
             fun from(parent: ViewGroup): MyViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ListElementBinding.inflate(layoutInflater, parent, false)
+                val binding = CommentElementBinding.inflate(layoutInflater, parent, false)
                 return MyViewHolder(binding)
             }
         }
@@ -36,7 +38,7 @@ class ListAdapter(val clickListener: PostListener): ListAdapter<Post, com.nequi.
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(getItem(position)!!, clickListener)
+        holder.bind(getItem(position)!!)
     }
 
     fun getPosition(adapterPosition: Int): Int {
@@ -44,16 +46,12 @@ class ListAdapter(val clickListener: PostListener): ListAdapter<Post, com.nequi.
     }
 }
 
-class PostDiffCallback: DiffUtil.ItemCallback<Post>() {
-    override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
+class PostDiffCallback: DiffUtil.ItemCallback<Comment>() {
+    override fun areItemsTheSame(oldItem: Comment, newItem: Comment): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
+    override fun areContentsTheSame(oldItem: Comment, newItem: Comment): Boolean {
         return oldItem == newItem
     }
-}
-
-class PostListener(val clickListener: (id: Int) -> Unit) {
-    fun onClick(post: Post) = clickListener(post.id)
 }

@@ -22,7 +22,8 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     init {
         val postDao = ZemogaDatabase.getDatabase(application).postDao()
         val userDao = ZemogaDatabase.getDatabase(application).userDao()
-        repository = ZemogaRepository(postDao, userDao)
+        val commentDao = ZemogaDatabase.getDatabase(application).commentDao()
+        repository = ZemogaRepository(postDao, userDao, commentDao)
         applicationContext = application
         allPosts = repository.getAll
     }
@@ -35,9 +36,9 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
         _navigateToDescription.value = null
     }
 
-    fun updateRead(post: Post) {
+    fun updateRead(postId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.readPost(post)
+            repository.readPost(postId)
             Log.i("prueba", "registro readen actualizado")
         }
     }
@@ -55,9 +56,15 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun callServiceGetUser(context: Context, userId: Int) {
+    fun callServiceGetUser(context: Context, postId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.callServiceGetUser(context, userId)
+            repository.callServiceGetUser(context, postId)
+        }
+    }
+
+    fun callServiceGetComments(context: Context, postId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.callServiceGetComments(context, postId)
         }
     }
 }

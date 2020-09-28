@@ -16,7 +16,8 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     init {
         val postDao = ZemogaDatabase.getDatabase(application).postDao()
         val userDao = ZemogaDatabase.getDatabase(application).userDao()
-        repository = ZemogaRepository(postDao, userDao)
+        val commentDao = ZemogaDatabase.getDatabase(application).commentDao()
+        repository = ZemogaRepository(postDao, userDao, commentDao)
         applicationContext = application
     }
 
