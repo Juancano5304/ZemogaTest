@@ -13,7 +13,7 @@
     <fragment
         android:id="@+id/descriptionFragment"
         android:name="com.nequi.zemogatestapp.ui.description.DescriptionFragment"
-        android:label="description_fragment"
+        android:label="Posts"
         tools:layout="@layout/description_fragment" />
     <fragment
         android:id="@+id/favoritesFragment"
@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/tabsFragment"
         android:name="com.nequi.zemogatestapp.ui.tabs.TabsFragment"
-        android:label="TabsFragment" >
+        android:label="Posts" >
         <action
             android:id="@+id/action_tabsFragment_to_descriptionFragment"
             app:destination="@id/descriptionFragment"

@@ -26,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:src="@drawable/ic_baseline_delete_24"
             android:onClick="@{() -> viewmodel.deleteAll()}"
             android:layout_marginBottom="32dp"

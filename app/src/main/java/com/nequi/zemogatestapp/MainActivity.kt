@@ -6,6 +6,7 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
@@ -34,8 +35,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         setSupportActionBar(mainactivity_toolbar)
-        supportActionBar!!.title = "Posts"
-        mainactivity_toolbar.title = "Posts"
 
         navController = this.findNavController(R.id.fragment)
         NavigationUI.setupActionBarWithNavController(this, navController)

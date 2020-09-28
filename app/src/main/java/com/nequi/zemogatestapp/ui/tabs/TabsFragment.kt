@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.Toolbar
 import androidx.viewpager.widget.ViewPager
+import com.nequi.zemogatestapp.MainActivity
 import com.nequi.zemogatestapp.R
 import com.nequi.zemogatestapp.ui.favorites.FavoritesFragment
 import com.nequi.zemogatestapp.ui.list.ListFragment
@@ -28,6 +29,7 @@ class TabsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
+
         return inflater.inflate(R.layout.tabs_fragment, container, false)
     }
 
@@ -59,6 +61,7 @@ class TabsFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(TabsViewModel::class.java)
         setupViewPager(view_pager)
         tab_layout.setupWithViewPager(view_pager)
+        activity?.title ="Posts"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
