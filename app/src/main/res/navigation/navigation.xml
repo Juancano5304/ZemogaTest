@@ -28,6 +28,8 @@
             android:id="@+id/action_tabsFragment_to_descriptionFragment"
             app:destination="@id/descriptionFragment"
             app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/fade_out" />
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
 </navigation>
