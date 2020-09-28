@@ -2,7 +2,6 @@ package com.nequi.zemogatestapp.repository
 
 import android.content.Context
 import android.os.AsyncTask
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import retrofit2.Call
@@ -124,7 +123,6 @@ class ZemogaRepository(private val postDao: PostDao, private val userDao: UserDa
                             deleteComments()
                             val body = response.body()!!
                             for(comment in body) {
-                                Log.i("Repository", comment.toString())
                                 insertComment(Comment(0, comment.body))
                             }
                         }

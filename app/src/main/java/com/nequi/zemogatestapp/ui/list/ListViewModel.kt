@@ -2,7 +2,6 @@ package com.nequi.zemogatestapp.ui.list
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.*
 import com.nequi.zemogatestapp.repository.Post
 import com.nequi.zemogatestapp.repository.ZemogaDatabase
@@ -38,14 +37,12 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     fun updateRead(postId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.readPost(postId)
-            Log.i("prueba", "Post leido")
         }
     }
 
     fun deleteAll() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteAll()
-            Log.i("prueba", "registros borrados")
         }
     }
 

@@ -1,10 +1,8 @@
 package com.nequi.zemogatestapp.ui.description
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -16,7 +14,6 @@ import com.google.gson.GsonBuilder
 import com.nequi.zemogatestapp.R
 import com.nequi.zemogatestapp.databinding.DescriptionFragmentBinding
 import com.nequi.zemogatestapp.repository.Post
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.description_fragment.*
 
 class DescriptionFragment : Fragment() {
@@ -71,7 +68,6 @@ class DescriptionFragment : Fragment() {
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
         this.menu = menu
-        Log.i("description", post.toString())
         when(temporalFavorite) {
             false ->
                 menu.getItem(0).icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_star_border_24)

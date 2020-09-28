@@ -3,7 +3,6 @@ package com.nequi.zemogatestapp.ui.tabs
 import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -43,7 +42,6 @@ class TabsFragment : Fragment() {
             return false
         }
         if(id == R.id.favorite) {
-            Log.i("tabs", "probando favorito")
             return true
         }
         return false
